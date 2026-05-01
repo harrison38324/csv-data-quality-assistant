@@ -182,7 +182,7 @@ if uploaded_file is not None:
                 
                 # Sort by priority
                 priority_order = {'🔴 High': 0, '🟡 Medium': 1, '🟢 Low': 2}
-                suggestions_df['sort_key'] = suggestions_df['Priority'].map(priority_order)
+                suggestions_df['sort_key'] = suggestions_df['Priority'].map(lambda x: priority_order.get(x, 999))
                 suggestions_df = suggestions_df.sort_values('sort_key').drop('sort_key', axis=1)
                 
                 st.dataframe(suggestions_df, use_container_width=True, hide_index=True)
